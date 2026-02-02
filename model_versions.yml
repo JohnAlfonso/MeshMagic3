@@ -1,0 +1,27 @@
+# Pinned versions for production reproducibility.
+# This file is the single source of truth for all external model versions.
+# Update these when upgrading to new model versions.
+#
+# Usage: serve.py loads this file at startup and passes revisions to model loaders.
+
+huggingface:
+  # Main Trellis 2 image-to-3D model
+  microsoft/TRELLIS.2-4B:
+    revision: "8f80e86a6862e1965c4b455b039ee2111cd3e096"
+    notes: "Primary 3D generation model"
+
+  # External model referenced by TRELLIS.2-4B (sparse_structure_decoder)
+  microsoft/TRELLIS-image-large:
+    revision: "25e0d31ffbebe4b5a97464dd851910efc3002d96"
+    notes: "Sparse structure decoder used by TRELLIS.2-4B"
+
+  # Background removal model (BiRefNet)
+  ZhengPeng7/BiRefNet:
+    revision: "26e7919b869d089e5096e898c0492898f935604c"
+    notes: "Used for image preprocessing / background removal"
+
+  # DINOv3 image feature extractor (loaded via transformers)
+  # Gated model - requires HF token with access
+  facebook/dinov3-vitl16-pretrain-lvd1689m:
+    revision: "ea8dc2863c51be0a264bab82070e3e8836b02d51"  #
+    notes: "Image conditioning model for feature extraction"
